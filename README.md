@@ -1,3 +1,12 @@
+## 진행 사항
+|날짜|내역|진행도|비고|
+|:---:|:---:|:---:|:---:|
+|03.19|기본 컨트롤러 등록 및 커밋|15%|Nest.js 첫 연습|
+
+
+
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
