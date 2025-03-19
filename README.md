@@ -5,6 +5,7 @@
 |03.19-2|Model, 테스트(http) 삽입 및 Controller, Service 수정|20%|의존성 주입 방식으로 변경 예정|
 |03.19-3|Repository 삽입 및 Controller, Service 수정|25%||
 |03.19-4|기존 코드 의존성 주입 패턴 적용|30%|이후 코드도 적용 예정, 현재 작성된 코드들 테스트 完|
+|03.19-5|MongoDB에 저장하는 방식으로 변경|35%|mongoose 모듈 추가|
 
 ___
 

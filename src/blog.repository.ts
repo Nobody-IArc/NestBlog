@@ -1,6 +1,9 @@
 import { readFile, writeFile } from 'fs/promises'; // fs/promises 모듈 임포트
 import { PostDto } from './blog.model';
 import { Injectable } from '@nestjs/common'; // 의존성 주입을 위한 모듈
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Blog, BlogDocument } from './blog.schema';
 
 export interface BlogRepository {
   getAllPosts(): Promise<PostDto[]>;
@@ -63,5 +66,48 @@ export class BlogFileRepository implements BlogRepository {
     }
     postList[index] = updatePost;
     await writeFile(this.FILE_NAME, JSON.stringify(postList));
+  }
+}
+
+// MongoDB와 사용할 리파지터리
+@Injectable()
+export class BlogMongoRepository implements BlogRepository {
+  constructor(@InjectModel(Blog.name) private blogModel: Model<BlogDocument>) {}
+
+  // Get All
+  async getAllPosts(): Promise<Blog[]> {
+    return await this.blogModel.find().exec();
+  }
+
+  // Create One
+  async createPost(postDto: PostDto): Promise<void> {
+    const createPost = {
+      ...postDto,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+
+    await this.blogModel.create(createPost);
+  }
+
+  // Get One
+  async getPost(id: string): Promise<PostDto> {
+    const post = await this.blogModel.findById(id);
+    if (!post) {
+      throw new Error('No post found.');
+    }
+
+    return post;
+  }
+
+  // Delete One
+  async deletePost(id: string): Promise<void> {
+    await this.blogModel.findByIdAndDelete(id);
+  }
+
+  // Update One
+  async updatePost(id: string, postDto: Omit<PostDto, 'id'>): Promise<void> {
+    const updatePost = { id, ...postDto, updatedAt: new Date() };
+    await this.blogModel.findByIdAndUpdate(id, updatePost);
   }
 }

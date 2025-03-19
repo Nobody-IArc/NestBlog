@@ -1,5 +1,6 @@
 import { PostDto } from './blog.model'; // Model Import
-import { BlogFileRepository } from './blog.repository';
+// import { BlogFileRepository } from './blog.repository';
+import { BlogMongoRepository } from './blog.repository';
 import { Injectable } from '@nestjs/common'; // 의존성 주입을 위한 모듈
 
 @Injectable()
@@ -14,8 +15,8 @@ export class BlogService {
    }
    */
 
-  // 의존성 주입으로 인한 새로운 생성자
-  constructor(private blogFileRepository: BlogFileRepository) {}
+  // 의존성 주입으로 인한 새로운 생성자 -> MongoDB 사용으로 인해 리파지터리 변경
+  constructor(private blogFileRepository: BlogMongoRepository) {}
 
   async getAllPosts() {
     // return this.posts;
