@@ -15,13 +15,18 @@ import { PostDto } from './blog.model';
 
 // export BlogController 로 다른 코드에서 사용 가능
 export class BlogController {
+  /*  의존성 주입으로 인한 기존 생성자 코드 삭제
   blogService: BlogService;
 
-  // 생성자로 blogService 생성
-  // 추후에 의존성 주입 방식으로 변경
+   생성자로 blogService 생성
+   추후에 의존성 주입 방식으로 변경
   constructor() {
     this.blogService = new BlogService();
   }
+  */
+
+  // 의존성 주입으로 인한 새로운 생성자
+  constructor(private blogService: BlogService) {}
 
   @Get() // Get Decorator, 서버 경로에 대해 getAllPosts()
   async getAllPosts() {

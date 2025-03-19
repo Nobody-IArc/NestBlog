@@ -13,14 +13,14 @@ Content-Type: application/json
   "name": "Name"
 }
 
-### GET One <게시글ID> 값 변경해 사용
-GET {{server}}/blog/<게시글ID>
+### GET <게시글ID> 값 변경해 사용
+GET {{server}}/blog/1
 
 ### DELETE <게시글ID> 값 변경해 사용
-DELETE {{server}}/blog/<게시글ID>
+DELETE {{server}}/blog/3
 
 ### PUT <게시글ID> 값과 json 값 변경해 사용
-PUT {{server}}/blog/<게시글ID>
+PUT {{server}}/blog/2
 Content-Type: application/json
 
 {

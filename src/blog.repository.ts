@@ -1,5 +1,6 @@
 import { readFile, writeFile } from 'fs/promises'; // fs/promises 모듈 임포트
 import { PostDto } from './blog.model';
+import { Injectable } from '@nestjs/common'; // 의존성 주입을 위한 모듈
 
 export interface BlogRepository {
   getAllPosts(): Promise<PostDto[]>;
@@ -9,6 +10,7 @@ export interface BlogRepository {
   updatePost(id: string, postDto: PostDto): Promise<any>;
 }
 
+@Injectable() // 의존성 주입
 export class BlogFileRepository implements BlogRepository {
   FILE_NAME = './src/blog.data.json';
 
