@@ -1,0 +1,30 @@
+@server = http://localhost:3000
+
+### GET All
+GET {{server}}/blog
+
+### POST
+POST {{server}}/blog
+Content-Type: application/json
+
+{
+  "title": "Title",
+  "content": "Content",
+  "name": "Name"
+}
+
+### GET One <게시글ID> 값 변경해 사용
+GET {{server}}/blog/<게시글ID>
+
+### DELETE <게시글ID> 값 변경해 사용
+DELETE {{server}}/blog/<게시글ID>
+
+### PUT <게시글ID> 값과 json 값 변경해 사용
+PUT {{server}}/blog/<게시글ID>
+Content-Type: application/json
+
+{
+  "title": "Update",
+  "content": "Content",
+  "name": "Arthur"
+}
